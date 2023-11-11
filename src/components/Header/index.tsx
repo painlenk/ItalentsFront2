@@ -3,8 +3,8 @@ import logo from "../../../public/images/logo.svg";
 
 export const Header = () => {
   return (
-    <header className="border-b-2 py-6">
-      <nav className="uppercase flex items-center  ">
+    <header className="border-b-2 py-6 bg-slate-800">
+      <nav className="uppercase flex items-center  max-w-[80%] mx-auto ">
         <Image src={logo} alt="logo" width={135} height={74} />
         <ul className="flex font-bold text-lg justify-evenly h-20 items-center w-3/4 ">
           <li className="border-solid border-yellow-300 border-2 bg-yellow-400 rounded-full p-2  text-gray-900">
