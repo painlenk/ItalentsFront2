@@ -4,4 +4,6 @@
 
 body {
   color: whitesmoke;
+  box-sizing: border-box;
+  background-color: rgb(28, 25, 23);
 }
