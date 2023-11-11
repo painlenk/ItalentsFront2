@@ -1,10 +1,21 @@
-export const Pills = () => {
+interface IProps {
+  color: string;
+  statusBattle: string;
+}
+
+export const Pills = ({ color, statusBattle }: IProps) => {
   return (
     <div
-      className="border-2 border-solid py-2 px-6 rounded-full text-base text-center font-semibold"
-      style={{ borderColor: "orange", color: "orange" }}
+      className="text-base text-center font-semibold"
+      style={{
+        borderColor: color,
+        color: color,
+        border: "1px solid",
+        padding: "8px 12px",
+        borderRadius: "16px",
+      }}
     >
-      <p>All-rounder</p>
+      <p>{statusBattle}</p>
     </div>
   );
 };

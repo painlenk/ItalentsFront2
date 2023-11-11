@@ -11,10 +11,10 @@ export interface IPokemon {
   evolutions: any[];
 }
 
-interface ISkills {
-  ataque: number;
-  resistência: number;
-  mobilidade: number;
-  pontuação: number;
-  suporte: number;
+export interface ISkills {
+  attack: number;
+  resistance: number;
+  mobility: number;
+  punctuation: number;
+  support: number;
 }

@@ -1,7 +1,11 @@
+"use client";
 import { Divider } from "@/shared/Divider";
 import { Pills } from "@/shared/Pills";
 import { SkillsBar } from "@/shared/SkillsBar";
+import { IPokemon } from "@/types/pokemon";
 import Image from "next/image";
+import { useParams, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface IProps {
   params: {
@@ -9,31 +13,51 @@ interface IProps {
   };
 }
 
-export default async function Details({ params }: IProps) {
+export default function Details({ params }: IProps) {
+  const [pokemon, setPokemon] = useState<IPokemon>();
+  const urlParams = useSearchParams();
+
+  useEffect(() => {
+    const state = urlParams.get("data");
+
+    if (!state) {
+      return;
+    }
+
+    setPokemon(JSON.parse(state));
+  }, []);
+
+  if (!pokemon) {
+    return;
+  }
+
   return (
     <main className="max-w-[60%] ml-auto mr-auto mt-14 ">
       <section className="flex justify-center items-center  bg-gradient-to-r from-stone-900 via-stone-800 to-stone-700 rounded-2xl px-12 mb-14">
         <Image
-          src={`/images/stat/stat-charizard.png`}
-          alt="charizard"
+          src={`/images/stat/stat-${pokemon?.avatar}.png`}
+          alt={pokemon?.name}
           width={358}
           height={358}
         />
         <div className="flex flex-col items-end">
-          <h1 className="text-4xl font-bold" style={{ color: "orange" }}>
-            Charizard
+          <h1 className="text-4xl font-bold" style={{ color: pokemon.color }}>
+            {pokemon.name}
           </h1>
-          <span>Nível: INICIANTE</span>
+          <span>Nível: {pokemon.level}</span>
 
-          <p className="max-w-[80%] mt-8 text-right">
-            Enquanto ainda é Charmander, não é o mais confiável, mas ao evoluir
-            para Charizard, consegue usar seus movimentos poderosos para atacar
-            e causar dano em uma área bem grande.
-          </p>
+          <p className="max-w-[80%] mt-8 text-right">{pokemon.description}</p>
 
           <div className="flex  mt-8 max-w-[60%] items-center justify-between gap-8">
-            <Pills />
-            <Pills />
+            {pokemon.stats_battle.map((item) => {
+              return (
+                <Pills
+                  color={pokemon.color}
+                  statusBattle={item}
+                  key={`${item}${pokemon.id}`}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -49,9 +73,7 @@ export default async function Details({ params }: IProps) {
         </p>
 
         <div className="flex flex-col gap-4 justify-center items-center mt-14   w-[70%]">
-          <SkillsBar />
-          <SkillsBar />
-          <SkillsBar />
+          <SkillsBar skill={pokemon.skills} />
         </div>
       </section>
     </main>

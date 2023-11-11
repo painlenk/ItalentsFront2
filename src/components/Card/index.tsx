@@ -10,7 +10,12 @@ interface IProps {
 export const Card = ({ pokemon }: IProps) => {
   return (
     <Link
-      href={"www.google.com"}
+      href={{
+        pathname: `/details/${pokemon.uri}`,
+        query: {
+          data: JSON.stringify(pokemon),
+        },
+      }}
       className={`w-56 h-72   block relative rounded-lg hover:border-2 hover:border-solid hover:border-yellow-400`}
       style={{ backgroundColor: pokemon.color }}
     >
