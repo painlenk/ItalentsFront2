@@ -27,8 +27,12 @@ export const Header = () => {
         </ul>
 
         <ul className="flex gap-8 font-bold text-lg justify-between h-20 items-center ml-auto ">
-          <li>Login</li>
-          <li>Cadastro</li>
+          <li>
+            <Link href="/login">Login</Link>
+          </li>
+          <li>
+            <Link href="/register">Cadastro</Link>
+          </li>
         </ul>
       </nav>
     </header>

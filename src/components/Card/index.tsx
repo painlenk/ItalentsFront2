@@ -16,6 +16,7 @@ export const Card = ({ pokemon }: IProps) => {
           data: JSON.stringify(pokemon),
         },
       }}
+      prefetch
       className={`w-56 h-72   block relative rounded-lg hover:border-2 hover:border-solid hover:border-yellow-400`}
       style={{ backgroundColor: pokemon.color }}
     >
