@@ -6,13 +6,13 @@ interface IProps {
 
 export const SkillsBar = ({ skill }: IProps) => {
   return (
-    <>
+    <div className="flex flex-col gap-4 justify-center items-center  w-[70%]">
       <div className="flex justify-between items-center bg-stone-700 w-full p-6 rounded-lg">
-        <label className="text-lg">Ataque</label>
+        <span className="text-lg">Ataque</span>
         <progress
           max={100}
           value={skill.attack}
-          className="w-[60%] h-3 [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-yellow-400 [&::-moz-progress-bar]:bg-yellow-400"
+          className="w-[60%] h-3 [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-yellow-400 [&::-moz-progress-bar]:bg-yellow-400"
         />
       </div>
 
@@ -51,6 +51,6 @@ export const SkillsBar = ({ skill }: IProps) => {
           className="w-[60%] h-3 [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-yellow-400 [&::-moz-progress-bar]:bg-yellow-400"
         />
       </div>
-    </>
+    </div>
   );
 };

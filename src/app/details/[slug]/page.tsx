@@ -72,7 +72,7 @@ export default function Details({ params }: IProps) {
           Esse Pokémon possui as seguintes habilidades de batalha:
         </p>
 
-        <div className="flex flex-col gap-4 justify-center items-center mt-14   w-[70%]">
+        <div className=" mt-14 w-[70%] flex justify-center items-center ">
           <SkillsBar skill={pokemon.skills} />
         </div>
       </section>

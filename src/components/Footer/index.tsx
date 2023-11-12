@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Logo from "../../../public/images/logo-footer.png";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
@@ -18,9 +19,19 @@ export const Footer = () => {
       </a>
 
       <ul className="flex mt-6 gap-6 font-semibold">
-        <li>Google Play</li>
-        <li>Nintendo Switch</li>
-        <li>App Store</li>
+        <li>
+          <Link href="https://play.google.com/store/apps/details?id=jp.pokemon.pokemonunite&hl=pt_BR&gl=US">
+            Google Play
+          </Link>
+        </li>
+        <li>
+          <Link href='"https://apps.apple.com/br/app/pok%C3%A9mon-unite/id1512321575"'>
+            App Store
+          </Link>
+        </li>
+        <li>
+          <Link href="/">Página Inicial</Link>
+        </li>
       </ul>
     </footer>
   );
