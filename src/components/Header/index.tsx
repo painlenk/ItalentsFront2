@@ -1,8 +1,13 @@
+"use client";
 import Image from "next/image";
 import logo from "../../../public/images/logo.svg";
 import Link from "next/link";
+import { AuthContext, IContext } from "@/context/authContext";
+import { useContext } from "react";
 
 export const Header = () => {
+  const { userName, userLogged, logout } = useContext(AuthContext) as IContext;
+
   return (
     <header className="border-b-2 border-gray-600 border-solid py-6 bg-stone-900">
       <nav className="uppercase flex items-center  max-w-[80%] mx-auto ">
@@ -26,14 +31,32 @@ export const Header = () => {
           </li>
         </ul>
 
-        <ul className="flex gap-8 font-bold text-lg justify-between h-20 items-center ml-auto ">
-          <li>
-            <Link href="/login">Login</Link>
-          </li>
-          <li>
-            <Link href="/register">Cadastro</Link>
-          </li>
-        </ul>
+        {userLogged ? (
+          <ul className="flex gap-8 font-bold text-base justify-between h-20 items-center ml-auto ">
+            <li className="lowercase  text-center border-r-2 border-x-white border-solid pl-8">
+              bem-vindo
+              <span className="text-yellow-400 "> {userName}</span>
+            </li>
+            <li className="">
+              <Link href="/colecao">coleção</Link>
+            </li>
+
+            <li className="">
+              <Link onClick={logout} href="/">
+                Sair
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className="flex gap-8 font-bold text-lg justify-between h-20 items-center ml-auto ">
+            <li>
+              <Link href="/login">Login</Link>
+            </li>
+            <li>
+              <Link href="/register">Cadastro</Link>
+            </li>
+          </ul>
+        )}
       </nav>
     </header>
   );

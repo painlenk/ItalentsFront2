@@ -4,7 +4,7 @@ import { Pills } from "@/shared/Pills";
 import { SkillsBar } from "@/shared/SkillsBar";
 import { IPokemon } from "@/types/pokemon";
 import Image from "next/image";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface IProps {
@@ -25,7 +25,7 @@ export default function Details({ params }: IProps) {
     }
 
     setPokemon(JSON.parse(state));
-  }, []);
+  }, [urlParams]);
 
   if (!pokemon) {
     return;
