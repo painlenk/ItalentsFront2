@@ -6,7 +6,9 @@ import { AuthContext, IContext } from "@/context/authContext";
 import { useContext } from "react";
 
 export const Header = () => {
-  const { userName, userLogged, logout } = useContext(AuthContext) as IContext;
+  const { userName, userLogged, logout, deleteAccount } = useContext(
+    AuthContext
+  ) as IContext;
 
   return (
     <header className="border-b-2 border-gray-600 border-solid py-6 bg-stone-900">
@@ -44,6 +46,12 @@ export const Header = () => {
             <li className="">
               <Link onClick={logout} href="/">
                 Sair
+              </Link>
+            </li>
+
+            <li className="">
+              <Link onClick={deleteAccount} href="/">
+                excluir conta
               </Link>
             </li>
           </ul>

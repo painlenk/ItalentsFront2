@@ -1,13 +1,16 @@
 "use client";
 
 import { AuthContext, IContext } from "@/context/authContext";
-import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import axios from "axios";
+import { redirect, useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
   const [loginError, setLoginError] = useState("");
-  const { setUserLogged, setUserName } = useContext(AuthContext) as IContext;
+  const { setUserLogged, setUserName, userLogged } = useContext(
+    AuthContext
+  ) as IContext;
   const router = useRouter();
 
   const {
@@ -21,19 +24,33 @@ export default function Login() {
     },
   });
 
-  const submit = (data: { username: string; password: string }) => {
-    const USERNAME = "teste";
-    const PASSWORD = "1234";
+  const submit = async (data: { username: string; password: string }) => {
+    const { username, password } = data;
 
-    if (data.username !== USERNAME || data.password !== PASSWORD) {
-      setLoginError("Erro ao fazer login, usuário ou senha invalidos");
+    try {
+      const userData = await axios.post("/api/login/", { username });
 
-      return;
+      if (
+        username !== userData?.data?.name ||
+        password !== userData?.data?.password
+      ) {
+        setLoginError("usuário ou senha inválido");
+
+        return;
+      }
+
+      setUserLogged(true);
+      setUserName(username);
+    } catch (e) {
+      console.log("error -->", e);
     }
-
-    setUserLogged(true), setUserName(data.username);
-    router.push("/");
   };
+
+  useEffect(() => {
+    if (userLogged) {
+      redirect("/");
+    }
+  }, [userLogged]);
 
   return (
     <main className="flex flex-col justify-center items-center border-2 rounded-lg p-4 max-w-[50%] mr-auto ml-auto mt-14">

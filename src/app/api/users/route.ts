@@ -1,14 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { uuid } from "uuidv4";
 
-export async function GET() {
-  const prima = new PrismaClient();
-
-  const data = await prima.usuarios.findMany();
-  console.log("chamou");
-  return Response.json(data);
-}
-
 export async function POST(req: Request) {
   const { username, password } = await req.json();
 
@@ -17,8 +9,8 @@ export async function POST(req: Request) {
   }
 
   try {
-    const prima = new PrismaClient();
-    const user = await prima.usuarios.create({
+    const prisma = new PrismaClient();
+    const user = await prisma.usuarios.create({
       data: { id: uuid(), name: username, password: password },
     });
 
@@ -37,9 +29,9 @@ export async function PUT(req: Request) {
   }
 
   try {
-    const prima = new PrismaClient();
+    const prisma = new PrismaClient();
 
-    const user = prima.usuarios.update({
+    const user = prisma.usuarios.update({
       where: { name: username },
       data: { password: password },
     });
@@ -51,7 +43,7 @@ export async function PUT(req: Request) {
   }
 }
 
-export async function DELETE(req: Request) {
+export async function PATCH(req: Request) {
   const { username } = await req.json();
 
   if (!username) {

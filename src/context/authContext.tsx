@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
 
@@ -12,6 +13,7 @@ export interface IContext {
   userName: string;
   setUserName: (name: string) => void;
   logout: () => void;
+  deleteAccount: () => void;
 }
 
 export const AuthContext = createContext<IContext | null>(null);
@@ -28,9 +30,25 @@ const AuthContextProvider = ({ children }: IProps) => {
     router.push("/");
   };
 
+  const deleteAccount = async () => {
+    try {
+      const userData = await axios.patch("/api/users", { username: userName });
+      logout();
+    } catch (e) {
+      console.log("error -->", e);
+    }
+  };
+
   return (
     <AuthContext.Provider
-      value={{ userLogged, setUserLogged, userName, setUserName, logout }}
+      value={{
+        userLogged,
+        setUserLogged,
+        userName,
+        setUserName,
+        logout,
+        deleteAccount,
+      }}
     >
       {children}
     </AuthContext.Provider>
