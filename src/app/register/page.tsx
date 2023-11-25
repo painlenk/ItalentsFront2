@@ -1,10 +1,15 @@
 "use client";
+import { AuthContext, IContext } from "@/context/authContext";
 import axios from "axios";
-import { useState } from "react";
+import { redirect, useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Register() {
   const [loginError, setLoginError] = useState("");
+  const { setUserLogged, setUserName, userLogged } = useContext(
+    AuthContext
+  ) as IContext;
 
   const {
     register,
@@ -25,11 +30,24 @@ export default function Register() {
         username,
         password,
       });
+
+      if (userData.status !== 200) {
+        setLoginError("usuário já cadastrado");
+        return;
+      }
+      setUserLogged(true);
+      setUserName(username);
     } catch (e) {
       console.log("error -->", e);
-      setLoginError("erro ao realizar o login, tente novamente mais tarde");
+      setLoginError("erro ao realizar o registro, tente novamente mais tarde");
     }
   };
+
+  useEffect(() => {
+    if (userLogged) {
+      redirect("/");
+    }
+  }, [userLogged]);
 
   return (
     <main className="flex flex-col justify-center items-center border-2 rounded-lg p-4 max-w-[50%] mr-auto ml-auto mt-14">

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { uuid as v4 } from "uuidv4";
+import { uuid } from "uuidv4";
 
 export async function GET() {
   const prima = new PrismaClient();
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   try {
     const prima = new PrismaClient();
     const user = await prima.usuarios.create({
-      data: { id: v4(), name: username, password: password },
+      data: { id: uuid(), name: username, password: password },
     });
 
     return Response.json(user);
