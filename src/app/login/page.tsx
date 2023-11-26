@@ -2,17 +2,18 @@
 
 import { AuthContext, IContext } from "@/context/authContext";
 import axios from "axios";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
   const [loginError, setLoginError] = useState("");
+  // chama o contexto de login
   const { setUserLogged, setUserName, userLogged } = useContext(
     AuthContext
   ) as IContext;
-  const router = useRouter();
 
+  // utiliza o react-hook-form para controlar o estado do formulário
   const {
     register,
     handleSubmit,
@@ -24,6 +25,7 @@ export default function Login() {
     },
   });
 
+  // função de submit para validar os dados antes de enviar pra api
   const submit = async (data: { username: string; password: string }) => {
     const { username, password } = data;
 

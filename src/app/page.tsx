@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [pokemonsList, setPokemonsList] = useState<IPokemon[]>([]);
 
+  // ao acessar a pagina faz uma chamda pra api de pokemons trazendo todos os pokemons disponiveis
   useEffect(() => {
     const getpokemons = async () => {
       const res = await fetch(
@@ -13,6 +14,7 @@ export default function Home() {
       );
       const data: IPokemon[] = await res.json();
 
+      // seta a listagem de pokemons no estado
       setPokemonsList(data);
     };
 

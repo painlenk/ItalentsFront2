@@ -40,7 +40,9 @@ export default function NewPassword() {
     try {
     } catch (e) {
       console.log("error -->", e);
-      setPasswordError("erro no servidor");
+      setPasswordError(
+        "erro ao realizar a troca de senha, tente novamente mais tarde"
+      );
     }
   };
 

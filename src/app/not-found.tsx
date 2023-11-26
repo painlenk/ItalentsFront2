@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
+  // pagina padrão de 500 caso a rota chamada não exista
   return (
     <div className="flex flex-col w-[40%] m-auto  justify-center items-center mt-8">
       <h1 className="text-4xl font-bold text-blue-400">

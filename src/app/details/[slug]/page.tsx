@@ -14,7 +14,9 @@ interface IProps {
 }
 
 export default function Details({ params }: IProps) {
+  //cria um estado para a o pokemon
   const [pokemon, setPokemon] = useState<IPokemon>();
+  //pega o parametro enviado pela rota
   const urlParams = useSearchParams();
 
   useEffect(() => {

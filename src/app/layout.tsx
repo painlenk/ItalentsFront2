@@ -11,6 +11,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  //pagina de layout
   return (
     <html lang="pt-BR">
       <body className=" ">

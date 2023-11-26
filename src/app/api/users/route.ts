@@ -43,6 +43,7 @@ export async function PUT(req: Request) {
   }
 }
 
+// a rota deveria ser chamada como DELETE porem a versão do nextjs que foi implementada está com um erro onde não é possivel enviar o body pelo metodo de DELETE
 export async function PATCH(req: Request) {
   const { username } = await req.json();
 

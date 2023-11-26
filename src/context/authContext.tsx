@@ -24,12 +24,14 @@ const AuthContextProvider = ({ children }: IProps) => {
   const [userLogged, setUserLogged] = useState(false);
   const [userName, setUserName] = useState("");
 
+  //função de logout que limpa o estado
   const logout = () => {
     setUserName("");
     setUserLogged(false);
     router.push("/");
   };
 
+  //função para deletar usuario
   const deleteAccount = async () => {
     try {
       const userData = await axios.patch("/api/users", { username: userName });

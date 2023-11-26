@@ -41,6 +41,7 @@ export default function Home() {
 
   const { userLogged } = useContext(AuthContext) as IContext;
 
+  // valida se o usuário esta logado na plataforma, caso não redireciona ele para fazer o login
   useLayoutEffect(() => {
     if (!userLogged) {
       redirect("/login");

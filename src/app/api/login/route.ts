@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
+// rota de login
 export async function POST(req: Request) {
   const { username } = await req.json();
 

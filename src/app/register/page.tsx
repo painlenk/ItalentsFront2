@@ -43,6 +43,7 @@ export default function Register() {
     }
   };
 
+  //  apos o usuário se registar redireciona ele para a pagina home
   useEffect(() => {
     if (userLogged) {
       redirect("/");
